@@ -6,7 +6,7 @@ class Solution:
         #adding first k elements
         for i in range(k):
             #remove all elements lesser than current
-            while dq and dq[len(dq)-1] <= nums[i]:
+            while dq and nums[dq[len(dq)-1]] <= nums[i]:
                 dq.pop()
 
             #we append indices into deque
@@ -18,12 +18,12 @@ class Solution:
             
             op.append(nums[dq[0]])
             #first we remove the max elements which are not in current window from deque
-            while dq and i-k >= dq[0]:
+            while dq and dq[0] <= i-k:
                 #remove elements from front
                 dq.popleft()
 
             #now before we insert we remove elements lesser than current element
-            while dq and dq[len(dq)-1] <= nums[i]:
+            while dq and nums[dq[len(dq)-1]] <= nums[i]:
                 dq.pop()
 
             dq.append(i)
@@ -31,5 +31,7 @@ class Solution:
         #element from last window
         op.append(nums[dq[0]])
         return op
+        
+
 
         
