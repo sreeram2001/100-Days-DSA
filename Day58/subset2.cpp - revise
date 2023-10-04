@@ -1,0 +1,33 @@
+class Solution {
+public:
+
+    vector<vector<int>> op;
+
+    void recursSub2(vector<int> nums, vector<int>& curr, int index)
+    {   
+        op.push_back(curr);
+
+        for(int i=index;i<nums.size();i++)
+        {
+
+            if(i!= index && nums[i] == nums[i-1])
+            {
+                continue;
+            }
+
+            curr.push_back(nums[i]);
+            recursSub2(nums, curr, i+1);
+            curr.pop_back();
+        }
+        
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+
+        sort(nums.begin(), nums.end());
+        vector<int> curr;
+        recursSub2(nums, curr, 0);
+        return op;
+        
+    }
+};
